@@ -1,37 +1,21 @@
-import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:flutter_tts/flutter_tts.dart';
 
-class SpeechService {
-  final stt.SpeechToText _speech = stt.SpeechToText();
-  bool _isInitialized = false;
+class TtsService {
+  final FlutterTts _flutterTts = FlutterTts();
 
   Future<void> init() async {
-    _isInitialized = await _speech.initialize(
-      onError: (error) => print('Speech error: $error'),
-      onStatus: (status) => print('Speech status: $status'),
-    );
+    await _flutterTts.setLanguage("en-IN");
+    await _flutterTts.setSpeechRate(0.45);
+    await _flutterTts.setPitch(1.1);
   }
 
-  Future<void> startListening(Function(String) onResult) async {
-    if (!_isInitialized) {
-      await init();
+  Future<void> speak(String text) async {
+    if (text.isNotEmpty) {
+      await _flutterTts.speak(text);
     }
-
-    await _speech.listen(
-      onResult: (result) {
-        if (result.finalResult) {
-          onResult(result.recognizedWords);
-        }
-      },
-      listenOptions: stt.SpeechListenOptions(
-        listenFor: const Duration(seconds: 5),
-        pauseFor: const Duration(seconds: 3),
-        localeId: 'en_IN',
-        partialResults: true,
-      ),
-    );
   }
 
   Future<void> stop() async {
-    await _speech.stop();
+    await _flutterTts.stop();
   }
 }
