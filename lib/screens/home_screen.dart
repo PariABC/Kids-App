@@ -10,6 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appState = context.watch<AppState>();
+
     final subjects = [
       {'name': 'Alphabet', 'icon': '🔤', 'color': const Color(0xFFFF6B6B)},
       {'name': 'Numbers', 'icon': '🔢', 'color': const Color(0xFF4ECDC4)},
@@ -64,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   child: GridView.builder(
                     padding: const EdgeInsets.all(24),
-                    gridDelegate: const <SliverGridDelegate>SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,
