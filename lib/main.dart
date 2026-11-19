@@ -1,34 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'providers/app_state.dart';
-import 'screens/class_selection_screen.dart';
+import 'screens/home_screen.dart'; // Ensure this matches your actual home screen file
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  runApp(const PariKidsApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class PariKidsApp extends StatelessWidget {
+  const PariKidsApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => AppState(),
-      child: MaterialApp(
-        title: 'ICSE Kids App',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF6C63FF),
-            brightness: Brightness.light,
-          ),
-          textTheme: GoogleFonts.fredokaTextTheme(),
-          useMaterial3: true,
-        ),
-        home: const ClassSelectionScreen(),
+    return MaterialApp(
+      title: 'Pari Kids',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
+        useMaterial3: true,
       ),
+      home: const HomeScreen(),
     );
   }
 }
