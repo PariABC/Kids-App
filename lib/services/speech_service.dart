@@ -22,9 +22,12 @@ class SpeechService {
           onResult(result.recognizedWords);
         }
       },
-      listenFor: const Duration(seconds: 5),
-      pauseFor: const Duration(seconds: 3),
-      localeId: 'en_IN',
+      listenOptions: stt.SpeechListenOptions(
+        listenFor: const Duration(seconds: 5),
+        pauseFor: const Duration(seconds: 3),
+        localeId: 'en_IN',
+        partialResults: true,
+      ),
     );
   }
 
